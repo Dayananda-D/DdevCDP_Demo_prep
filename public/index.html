@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus Ops — Orders Dashboard (devcdp demo)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span> Nimbus Ops <span class="tag">devcdp demo</span></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <main class="wrap">
+    <!-- Live metrics -->
+    <section class="metrics" id="metrics">
+      <div class="card"><div class="label">Orders / min</div><div class="value" id="m-opm">–</div></div>
+      <div class="card"><div class="label">Revenue (today)</div><div class="value" id="m-rev">–</div></div>
+      <div class="card"><div class="label">Active users</div><div class="value" id="m-users">–</div></div>
+      <div class="card"><div class="label">Open orders</div><div class="value" id="m-open">–</div></div>
+      <div class="card sync"><div class="label">Last sync</div><div class="value" id="m-time">–</div></div>
+    </section>
+
+    <div class="grid2">
+      <!-- Live orders -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Live Orders</h2>
+          <span class="muted" id="orders-count">0 orders</span>
+        </div>
+        <div class="table-wrap">
+          <table id="orders-table">
+            <thead>
+              <tr><th>ID</th><th>Customer</th><th>Item</th><th>Qty</th><th>Status</th></tr>
+            </thead>
+            <tbody id="orders-body">
+              <tr><td colspan="5" class="muted">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- New order + secure report -->
+      <section class="panel">
+        <div class="panel-head"><h2>New Order</h2></div>
+        <form id="order-form" onsubmit="return false;">
+          <label>Customer
+            <select id="f-customer">
+              <option value="">— select —</option>
+              <option>Acme Corp</option>
+              <option>Globex</option>
+              <option>Initech</option>
+            </select>
+          </label>
+          <label>Item
+            <input id="f-item" type="text" value="Widget A" />
+          </label>
+          <label>Quantity
+            <input id="f-qty" type="number" value="5" min="1" />
+          </label>
+          <button id="save-btn" class="btn primary">Save Order</button>
+          <div class="hint" id="save-hint"></div>
+        </form>
+
+        <hr />
+
+        <div class="panel-head"><h2>Secure Report</h2></div>
+        <button id="report-btn" class="btn">Load Secure Report</button>
+        <div class="hint" id="report-hint"></div>
+      </section>
+    </div>
+
+    <footer class="foot muted">
+      Demo app for the devcdp session · data updates live every few seconds
+    </footer>
+  </main>
+
+  <!-- Plain, unbundled scripts so breakpoints land on readable lines -->
+  <script src="api.js"></script>
+  <script src="saveHandler.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
